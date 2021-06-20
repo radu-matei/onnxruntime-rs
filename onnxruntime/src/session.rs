@@ -517,6 +517,7 @@ impl<'a> SessionBuilder<'a> {
     }
 }
 
+#[derive(Debug)]
 pub struct OwnedSession {
     env: Environment,
     session_ptr: *mut OrtSession,
