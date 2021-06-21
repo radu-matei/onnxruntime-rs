@@ -762,7 +762,7 @@ pub struct Input {
 }
 
 /// Information about an ONNX's output as stored in loaded file
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Output {
     /// Name of the output layer
     pub name: String,
