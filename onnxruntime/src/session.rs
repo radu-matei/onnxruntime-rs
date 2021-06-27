@@ -134,6 +134,13 @@ impl OwnedSessionBuilder {
         Ok(self)
     }
 
+    pub fn use_cuda(self) -> Result<OwnedSessionBuilder> {
+        unsafe {
+            sys::OrtSessionOptionsAppendExecutionProvider_CUDA(self.session_options_ptr, 0);
+        }
+        Ok(self)
+    }
+
     /// Set the session's allocator
     ///
     /// Defaults to [`AllocatorType::Arena`](../enum.AllocatorType.html#variant.Arena)
