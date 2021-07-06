@@ -11,7 +11,7 @@ use std::{
 /// WARNING: If version is changed, bindings for all platforms will have to be re-generated.
 ///          To do so, run this:
 ///              cargo build --package onnxruntime-sys --features generate-bindings
-const ORT_VERSION: &str = "1.6.0";
+const ORT_VERSION: &str = "1.8.0";
 
 /// Base Url from which to download pre-built releases/
 const ORT_RELEASE_BASE_URL: &str = "https://github.com/microsoft/onnxruntime/releases/download";
@@ -191,7 +191,7 @@ fn prebuilt_archive_url() -> (PathBuf, String) {
     let gpu_str = match env::var(ORT_ENV_GPU) {
         Ok(cuda_env) => match cuda_env.to_lowercase().as_str() {
             "1" | "yes" | "true" | "on" => match os.as_str() {
-                "linux" | "windows" => "-gpu",
+                "linux" | "windows" => "gpu",
                 os_str => panic!(
                     "Use of CUDA was specified with `{}` environment variable, but pre-built \
                              binaries with CUDA are only available for Linux and Windows, not: {}.",
@@ -233,8 +233,8 @@ fn prebuilt_archive_url() -> (PathBuf, String) {
     };
 
     let prebuilt_archive = format!(
-        "onnxruntime-{}-{}{}-{}.{}",
-        os_str, arch_str, gpu_str, ORT_VERSION, archive_extension
+        "onnxruntime-{}-{}-{}-{}.{}",
+        os_str, gpu_str, arch_str, ORT_VERSION, archive_extension
     );
     let prebuilt_url = format!(
         "{}/v{}/{}",
