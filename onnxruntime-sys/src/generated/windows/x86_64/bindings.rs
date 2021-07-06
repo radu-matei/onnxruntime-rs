@@ -5931,6 +5931,18 @@ fn bindgen_test_layout_OrtCustomOp() {
         )
     );
 }
+extern "C" {
+    pub fn OrtSessionOptionsAppendExecutionProvider_CPU(
+        options: *mut OrtSessionOptions,
+        use_arena: ::std::os::raw::c_int,
+    ) -> OrtStatusPtr;
+}
+extern "C" {
+    pub fn OrtSessionOptionsAppendExecutionProvider_CUDA(
+        options: *mut OrtSessionOptions,
+        device_id: ::std::os::raw::c_int,
+    ) -> OrtStatusPtr;
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct __crt_locale_data {
